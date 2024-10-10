@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height:12%; /* 높이를 10%로 설정하여 절반 크기로 줄임 */
+  height: 200px; /* 높이를 200px로 설정하여 이미지 크기 고정 */
   object-fit: cover; /* 이미지 비율을 유지하면서 컨테이너를 채움 */
   z-index: 999; /* 다른 요소들 위에 있도록 설정 */
 }
@@ -17,8 +17,9 @@
 .banner-text-about {
   position: absolute; /* 텍스트를 이미지 위에 겹치도록 설정 */
   color: #14172e; /* 텍스트 색상을 흰색으로 설정 */
-  font-size: 2rem;
-  top: 5%; /* 세로 중간 정렬 */
+  font-size: 2.5rem;
+  font-weight: bold;
+  top: 100px; /* 세로 위치 */
   left: 50%; /* 가로 중간 정렬 */
   transform: translate(-50%, -50%); /* 정확한 가운데 정렬을 위해 변환 */
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0); /* 텍스트 그림자로 가독성 향상 */
@@ -26,7 +27,7 @@
 
 .title_comp_name{
   text-align: left; /* 텍스트를 왼쪽으로 정렬 */
-  padding-top: 60px;
+  padding-top: 170px;
   font-weight: bold;
   font-size: 35px;
 }
@@ -35,9 +36,9 @@
   max-width: 100%;
   height: auto; /* 이미지의 높이를 비율에 맞게 자동 조정 */
   border-radius: 15px;
-  /* display: flex;
+  display: flex;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
   width: 100%;
   object-fit: cover; /* 이미지 비율을 유지하면서 컨테이너를 채움 */
   z-index: 999; /* 다른 요소들 위에 있도록 설정 */
@@ -48,7 +49,7 @@
   padding-top: 100px;
   width: 110%;
   max-width: 900px;
-  margin: 90px 20px 100px; /* 위, 좌우, 아래 여백 */
+  margin: 200px 20px 100px; /* 위, 좌우, 아래 여백 */
 }
 
 .styled-table {
