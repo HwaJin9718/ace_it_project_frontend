@@ -45,43 +45,43 @@ export function Menu({ isOpen }) {
     const [isBusinessOpen, setIsBusinessOpen] = useState(false); // 드롭다운 상태 관리
     const scope = useBusinessMenuAnimation(isBusinessOpen); // 비즈니스 메뉴에만 애니메이션 적용
 
-    return (
-        <nav className="menu-container">
-            <ul>
-                <li>
-                    <Link to="/" style={{textDecoration: 'none', color: 'inherit'}}>
-                        HOME
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/about" style={{textDecoration: 'none', color: 'inherit'}}>
-                        ABOUT
-                    </Link>
-                </li>
+  return (
+    <nav className="menu-container">
+      <ul>
+        <li>
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            HOME
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
+            ABOUT
+          </Link>
+        </li>
 
-                {/* 비즈니스 드롭다운 */}
-                <li ref={scope}>
-                    <motion.button
-                        whileTap={{scale: 0.97}}
-                        onClick={() => setIsBusinessOpen(!isBusinessOpen)}
-                        style={{
-                            textDecoration: 'none',
-                            color: 'inherit',
-                            background: 'none',
-                            border: 'none',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            fontWeight: 'bold',
-                        }}
-                    >
-                        BUSINESS
-                        <div className="arrow" style={{transformOrigin: "50% 55%",}}>
-                            <svg width="25" height="15" viewBox="0 5 20 20">
-                                <path d="M0 7 L 20 7 L 10 16"/>
-                            </svg>
-                        </div>
-                    </motion.button>
+        {/* 비즈니스 드롭다운 */}
+        <li ref={scope}>
+          <motion.button
+            whileTap={{ scale: 0.97 }}
+            onClick={() => setIsBusinessOpen(!isBusinessOpen)}
+            style={{
+              textDecoration: 'none',
+              color: 'inherit',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              fontWeight: 'bold',
+            }}
+          >
+            BUSINESS
+            <div className="arrow" style={{ transformOrigin: "50% 55%", }}>
+              <svg width="25" height="15" viewBox="0 5 20 20">
+                <path d="M0 7 L 20 7 L 10 16" />
+              </svg>
+            </div>
+          </motion.button>
 
                     <ul
                         className="dropdown-menu"

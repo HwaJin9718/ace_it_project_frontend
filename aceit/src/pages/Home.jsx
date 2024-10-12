@@ -1,26 +1,43 @@
 // src/pages/Home.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from "../components/Header";
 import Introduction from "../pages/Introduction";
 import Footer from "../components/Footer";
 import ReactFullpage from '@fullpage/react-fullpage';
 import './Home.css';
-import NavbarComp from "../components/layouts/Navigation/NavbarComp";
 
 const Home = () => {
-  const anchors = ['1', '2', '3'];
+  const anchors = ['home', '2', '3'];
+
+  useEffect(() => {
+    // 뷰포트 높이 계산 함수
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    // 초기 실행 및 리사이즈 이벤트 리스너 등록
+    setVh();
+    window.addEventListener('resize', setVh);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener('resize', setVh);
+    };
+  }, []);
 
   return (
     <ReactFullpage
       anchors={anchors}
       navigation
       scrollingSpeed={2000}
-      touchSensitivity={35}
+      touchSensitivity={55}
       scrollOverflow={true}
-      render={({fullpageApi}) => (
+      fitToSection={true} // fitToSection 옵션 추가
+      render={({ fullpageApi }) => (
         <ReactFullpage.Wrapper>
           <div className="section">
-            <Header/>
+            <Header />
             {/* 스크롤 다운 화살표 */}
             <div
               className="scroll-down-arrow"
@@ -30,8 +47,8 @@ const Home = () => {
             </div>
           </div>
           <div className="section">
-            <Introduction/>
-            <Footer/>
+            <Introduction />
+            <Footer />
           </div>
         </ReactFullpage.Wrapper>
       )}

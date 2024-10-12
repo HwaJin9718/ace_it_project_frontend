@@ -79,6 +79,7 @@ const Header = () => {
                           <h5 className="card-title">{card.title}</h5>
                           <p className="card-text">{card.text}</p>
                           <Link to="#" className="btn btn-primary btn-sm"  style={{
+                            position: "relative",
                             backgroundColor: '#4e61ff',
                             color: '#ffffff',
                           }}>more</Link>
@@ -96,7 +97,11 @@ const Header = () => {
                           <div className="card-body">
                             <h5 className="card-title">{cardData[index + 1].title}</h5>
                             <p className="card-text">{cardData[index + 1].text}</p>
-                            <Link to="#" className="btn btn-primary btn-sm">more</Link>
+                            <Link to="#" className="btn btn-primary btn-sm" style={{
+                              position: "relative",
+                              backgroundColor: '#4e61ff',
+                              color: '#ffffff',
+                            }}>more</Link>
                           </div>
                           <div className="card-footer">
                             <small className="text-muted">Last updated {cardData[index + 1].lastUpdated}</small>
