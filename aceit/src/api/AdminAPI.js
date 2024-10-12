@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const informationAPI = axios.create({
-    baseURL: 'http://localhost:8000/information', // 실제 API의 base URL로 변경하세요.
+    baseURL: 'http://localhost:8000/information',
 });
 
 export const getInformation = () => informationAPI.get('');
@@ -10,8 +10,9 @@ export const createInformation = (data) => informationAPI.post('', data);
 export const updateInformation = (id, data) => informationAPI.patch(`/${id}`, { request: data });
 export const deleteInformation = (id) => informationAPI.delete(`/${id}`);
 
+
 const historyAPI = axios.create({
-    baseURL: 'http://localhost:8000/history', // 실제 API의 base URL로 변경하세요.
+    baseURL: 'http://localhost:8000/history',
 });
 
 export const getHistory = () => historyAPI.get('');
@@ -20,4 +21,46 @@ export const getHistoryById = (id) => historyAPI.get(`/id/${id}`);
 export const createHistory = (data) => historyAPI.post('', data);
 export const updateHistory = (id, data) => historyAPI.patch(`/${id}`, { request: data });
 export const deleteHistory = (id) => historyAPI.delete(`/${id}`);
+
+
+const clientAPI = axios.create({
+    baseURL: 'http://localhost:8000/businessClient',
+});
+
+export const getBusinessClients = () => clientAPI.get('');
+export const getBusinessClientById = (id) => clientAPI.get(`/${id}`);
+export const createBusinessClient = (data) => clientAPI.post('', data, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+});
+export const updateBusinessClient = (id, data) => clientAPI.patch(`/${id}`, data);
+export const deleteBusinessClient = (id) => clientAPI.delete(`/${id}`);
+
+
+const vvAPI = axios.create({
+    baseURL: 'http://localhost:8000/companyVisionValues',
+});
+
+export const getCompanyVisionValues = () => vvAPI.get('');
+export const getCompanyVisionValueById = (id) => vvAPI.get(`/${id}`);
+export const createCompanyVisionValue = (data) => vvAPI.post('', data);
+export const updateCompanyVisionValue = (id, data) => vvAPI.patch(`/${id}`, data);
+export const deleteCompanyVisionValue = (id) => vvAPI.delete(`/${id}`);
+
+
+const areaAPI = axios.create({
+    baseURL: 'http://localhost:8000/businessArea',
+});
+
+export const getBusinessAreas = () => areaAPI.get('');
+export const getBusinessAreaById = (id) => areaAPI.get(`/${id}`);
+export const createBusinessArea = (data) => areaAPI.post('', data);
+export const updateBusinessArea = (id, data) => areaAPI.patch(`/${id}`, data);
+export const deleteBusinessArea = (id) => areaAPI.delete(`/${id}`);
+
+
+const inquiryAPI = axios.create({
+    baseURL: 'http://localhost:8000/inquiry',
+});
+
+export const sendInquiry = (data) => inquiryAPI.post('', data);
 

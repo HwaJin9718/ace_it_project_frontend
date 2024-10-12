@@ -12,6 +12,18 @@ const AdminPage = () => {
         navigate('/historyList');
     };
 
+    const handleNavigateToBusinessClient = () => {
+        navigate('/businessClientList');
+    };
+
+    const handleNavigateToCompanyVisionValues = () => {
+        navigate('/companyVisionValuesList');
+    };
+
+    const handleNavigateToBusinessArea = () => {
+        navigate('/businessAreaList');
+    };
+
     return (
         <div>
             <h3>관리자 페이지</h3>
@@ -20,6 +32,15 @@ const AdminPage = () => {
             </button>
             <button onClick={handleNavigateToHistoryList}>
                 history 목록 보기
+            </button>
+            <button onClick={handleNavigateToBusinessClient}>
+                business client 목록 보기
+            </button>
+            <button onClick={handleNavigateToCompanyVisionValues}>
+                company vision values 목록 보기
+            </button>
+            <button onClick={handleNavigateToBusinessArea}>
+                business area 목록 보기
             </button>
         </div>
     );
