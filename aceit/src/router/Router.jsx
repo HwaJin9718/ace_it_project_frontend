@@ -24,6 +24,10 @@ import EditBusinessArea from "../pages/admin/business_area/EditBusinessArea";
 import BusinessClientList from "../pages/admin/business_client/BusinessClientList";
 import AddBusinessClient from "../pages/admin/business_client/AddBusinessClient";
 import EditBusinessClient from "../pages/admin/business_client/EditBusinessClient";
+import SystemDevelop from "../pages/business/SystemDevelop";
+import FMSMonitoring from "../pages/business/FMSMonitoring";
+import InfrastructureSystem from "../pages/business/InfrastructureSystem";
+import Maintenance from "../pages/business/Maintenance";
 
 const Router = () => {
     return (
@@ -35,6 +39,12 @@ const Router = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/business" element={<Business />} />
+
+                    <Route path="/business/service1" element={<SystemDevelop />} />
+                    <Route path="/business/service2" element={<FMSMonitoring />} />
+                    <Route path="/business/service3" element={<InfrastructureSystem />} />
+                    <Route path="/business/service4" element={<Maintenance />} />
+
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/introduction" element={<Introduction />} />
 

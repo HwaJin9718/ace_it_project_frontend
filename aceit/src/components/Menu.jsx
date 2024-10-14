@@ -83,44 +83,50 @@ export function Menu({ isOpen }) {
             </div>
           </motion.button>
 
-                    <ul
-                        className="dropdown-menu"
-                        style={{
-                            display: isBusinessOpen ? "block" : "none",
-                            pointerEvents: isBusinessOpen ? "auto" : "none",
-                            clipPath: "inset(10% 50% 90% 50% round 10px)",
-                            border: '30px'
-                        }}
-                    >
-                        <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
-                            <Link to="/business/service1"
-                                  style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
-                                Service 1
-                            </Link>
-                        </li>
-                        <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
-                            <Link to="/business/service2"
-                                  style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
-                                Service 2
-                            </Link>
-                        </li>
-                        <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
-                            <Link to="/business/service3"
-                                  style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
-                                Service 3
-                            </Link>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <Link to="/about" style={{textDecoration: 'none', color: 'inherit'}}>
-                        회사소개
+            <ul
+                className="dropdown-menu"
+                style={{
+                    display: isBusinessOpen ? "block" : "none",
+                    pointerEvents: isBusinessOpen ? "auto" : "none",
+                    clipPath: "inset(10% 50% 90% 50% round 10px)",
+                    border: '30px'
+                }}
+            >
+                <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
+                    <Link to="/business/service1"
+                          style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
+                        시스템 개발
                     </Link>
                 </li>
-                <li>
-                    <Link to="/contact" style={{textDecoration: 'none', color: 'inherit'}}>
-                        Contact Us
+                <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
+                    <Link to="/business/service2"
+                          style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
+                        FMS 모니터링
+                    </Link>
+                </li>
+                <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
+                    <Link to="/business/service3"
+                          style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
+                        인프라 시스템
+                    </Link>
+                </li>
+                <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
+                    <Link to="/business/service4"
+                          style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
+                        유지보수
+                    </Link>
+                </li>
+            </ul>
+        </li>
+
+          <li>
+              <Link to="/about" style={{textDecoration: 'none', color: 'inherit'}}>
+                  회사소개
+              </Link>
+          </li>
+          <li>
+              <Link to="/contact" style={{textDecoration: 'none', color: 'inherit'}}>
+              Contact Us
                     </Link>
                 </li>
 
