@@ -28,6 +28,7 @@ import SystemDevelop from "../pages/business/SystemDevelop";
 import FMSMonitoring from "../pages/business/FMSMonitoring";
 import InfrastructureSystem from "../pages/business/InfrastructureSystem";
 import Maintenance from "../pages/business/Maintenance";
+import OrganizationHistory from "../pages/OrganizationHistory";
 
 const Router = () => {
     return (
@@ -38,6 +39,7 @@ const Router = () => {
                     {/* 일반 페이지 라우트 */}
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/about/OrganizationHistory" element={<OrganizationHistory />} />
                     <Route path="/business" element={<Business />} />
 
                     <Route path="/business/service1" element={<SystemDevelop />} />
@@ -50,6 +52,7 @@ const Router = () => {
 
                     {/* 관리자 페이지 라우트 */}
                     <Route path="/admin" element={<AdminPage />} />
+
                     {/* information router */}
                     <Route path="/informationList" element={<InformationList />} />
                     <Route path="/addInformation" element={<AddInformation />} />
