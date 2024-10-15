@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getBusinessClients, deleteBusinessClient } from '../../../api/AdminAPI';
+import {getBusinessClients, deleteBusinessClient, API_SERVER_HOST} from '../../../api/AdminAPI';
 import { useNavigate } from 'react-router-dom';
 
 const BusinessClientList = () => {
@@ -32,7 +32,7 @@ const BusinessClientList = () => {
                         {client.client_logo_path && (
                             <>
                                 <p>이미지 경로 : {client.client_logo_path}</p> {/* 이미지 경로 출력 */}
-                                <img src={`/${client.client_logo_path}`} alt={client.client_logo_name} width={100}/>
+                                <img src={`${API_SERVER_HOST}/${client.client_logo_path}`} alt={client.client_name} width={200}/>
                             </>
                         )}
 
