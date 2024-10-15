@@ -26,7 +26,6 @@ export default class About extends Component {
   render() {
     return (
       <div>
-        <NavbarComp/>
         <motion.div
           initial="hidden"
           animate="visible"
