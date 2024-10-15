@@ -7,7 +7,7 @@ import Home from '../pages/Home';
 import Business from '../pages/Business';
 import Contact from '../pages/Contact';
 import NavbarComp from '../components/layouts/Navigation/NavbarComp';
-import Introduction from '../components/Introduction';
+import Introduction from '../pages/Introduction';
 import AdminPage from "../pages/admin/AdminPage";
 import AddInformation from "../pages/admin/information/AddInformation";
 import InformationList from "../pages/admin/information/InformationList";
@@ -24,6 +24,7 @@ import EditBusinessArea from "../pages/admin/business_area/EditBusinessArea";
 import BusinessClientList from "../pages/admin/business_client/BusinessClientList";
 import AddBusinessClient from "../pages/admin/business_client/AddBusinessClient";
 import EditBusinessClient from "../pages/admin/business_client/EditBusinessClient";
+import OrganizationHistory from "../pages/OrganizationHistory";
 
 const Router = () => {
     return (
@@ -34,6 +35,7 @@ const Router = () => {
                     {/* 일반 페이지 라우트 */}
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/about/OrganizationHistory" element={<OrganizationHistory />} />
                     <Route path="/business" element={<Business />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/introduction" element={<Introduction />} />

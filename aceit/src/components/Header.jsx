@@ -5,8 +5,6 @@ import './layouts/Navigation/NavbarComp.css';
 import './Header.css'; // Header 전용 스타일 시트 추가
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Font Awesome 아이콘 임포트
 import {Carousel} from 'react-bootstrap';
-import {SectionsContainer, Section} from 'react-fullpage';
-import {scrollScreen} from "rc-scroll-anim";
 
 
 const Header = () => {
