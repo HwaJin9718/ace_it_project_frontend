@@ -7,7 +7,7 @@ import Home from '../pages/Home';
 import Business from '../pages/Business';
 import Contact from '../pages/Contact';
 import NavbarComp from '../components/layouts/Navigation/NavbarComp';
-import Introduction from '../components/Introduction';
+import Introduction from '../pages/Introduction';
 import AdminPage from "../pages/admin/AdminPage";
 import AddInformation from "../pages/admin/information/AddInformation";
 import InformationList from "../pages/admin/information/InformationList";
@@ -24,10 +24,6 @@ import EditBusinessArea from "../pages/admin/business_area/EditBusinessArea";
 import BusinessClientList from "../pages/admin/business_client/BusinessClientList";
 import AddBusinessClient from "../pages/admin/business_client/AddBusinessClient";
 import EditBusinessClient from "../pages/admin/business_client/EditBusinessClient";
-import SystemDevelop from "../pages/business/SystemDevelop";
-import FMSMonitoring from "../pages/business/FMSMonitoring";
-import InfrastructureSystem from "../pages/business/InfrastructureSystem";
-import Maintenance from "../pages/business/Maintenance";
 import OrganizationHistory from "../pages/OrganizationHistory";
 
 const Router = () => {
@@ -41,18 +37,11 @@ const Router = () => {
                     <Route path="/about" element={<About />} />
                     <Route path="/about/OrganizationHistory" element={<OrganizationHistory />} />
                     <Route path="/business" element={<Business />} />
-
-                    <Route path="/business/service1" element={<SystemDevelop />} />
-                    <Route path="/business/service2" element={<FMSMonitoring />} />
-                    <Route path="/business/service3" element={<InfrastructureSystem />} />
-                    <Route path="/business/service4" element={<Maintenance />} />
-
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/introduction" element={<Introduction />} />
 
                     {/* 관리자 페이지 라우트 */}
                     <Route path="/admin" element={<AdminPage />} />
-
                     {/* information router */}
                     <Route path="/informationList" element={<InformationList />} />
                     <Route path="/addInformation" element={<AddInformation />} />

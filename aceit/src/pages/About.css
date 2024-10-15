@@ -26,7 +26,7 @@
 }
 
 .title_comp_name{
-  text-align: left; /* 텍스트를 왼쪽으로 정렬 */
+  text-align: center; /* 텍스트를 왼쪽으로 정렬 */
   padding-top: 170px;
   font-weight: bold;
   font-size: 35px;

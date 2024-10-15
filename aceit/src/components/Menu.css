@@ -29,11 +29,13 @@
 }
 
 .menu-container li {
+  text-align: left;
+  position: relative;
   color: #ffffff;
   display: block;
   font-weight: bold;
-  font-size: 27px;
-  padding: 10px;
+  font-size: 24px;
+  padding: 8px;
   opacity: 0;
 
   will-change: transform, opacity, filter;
@@ -63,6 +65,7 @@
 }
 
 .dropdown-item {
+  text-align: center;
   padding: 0;
   margin-bottom: 0; /* 텍스트 아래의 빈 공간 제거 */
 }
@@ -70,23 +73,11 @@
 .dropdown-link {
   text-decoration: none;
   color: #000000;
-  font-size: 27px;
+  font-size: 10px;
 }
 
 .dropdown-item:hover {
   background-color: #89c9ff;
-}
-.business-button {
-  font-size: 57px;
-  font-weight: bold;
-  color: inherit;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 50px;
-  width: 100%;
 }
 
 .dropdown-item{
