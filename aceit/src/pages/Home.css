@@ -48,21 +48,9 @@
   transition: all 0.3s ease;
 }
 
-/* 메뉴 열렸을 때 */
-.menu-open .menu-toggle path.top {
-  d: 'M 3 16.5 L 17 2.5';
-}
-
 .menu-open .menu-toggle path.middle {
   opacity: 0;
 }
-
-.menu-open .menu-toggle path.bottom {
-  d: 'M 3 2.5 L 17 16.346';
-}
-/* Home.css */
-
-
 
 /* 기존 스타일 유지 */
 

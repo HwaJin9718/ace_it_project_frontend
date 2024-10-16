@@ -1,25 +1,15 @@
 .footer {
-/*  position: fixed;
-  bottom: 0;
-  width: 100%;*/
-  background-color: #1a1f3a;
+  background-color: #181e40;
   color: #fff;
 }
 
 .footer-top {
-  background-color: #8e9a9e;
+  background-color: #4A6AEC;
 }
 
-.footer-link {
-  color: #fff;
-}
 
 .footer-hr {
   width: 60px;
-}
-
-.white-text {
-  color: #fff;
 }
 
 .mr-3 {
@@ -33,6 +23,108 @@
 .mb-0 {
   margin-bottom: 0;
 }
+.md-8{
+
+}
 
 /* Add any other classes that were previously styled inline */
 /* Footer.css */
+.footer-container-1 {
+  padding-left: 250px;
+  color: #4a93b8;
+  display: flex;
+  justify-content: space-between; /* 왼쪽과 오른쪽을 나눔 */
+}
+
+.footer-left {
+  flex: 1;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column; /* 세로로 아이콘을 나열 */
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icon {
+  color: #fff;
+  font-size: 24px;
+  margin: 10px 0;
+  transition: color 0.3s;
+}
+
+
+
+.footer-bottom {
+  text-align: center;
+  padding: 10px;
+  background-color: #1b2655;
+}
+
+
+
+/* 버튼 감싸는 래퍼 */
+.button_wrap {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.inline-blocked {
+  display: inline-block;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #4A6AEC;
+  background-color: #ffffff;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.btn .fa {
+  margin-right: 10px;
+}
+
+.btn:hover {
+  background-color: #636e6e;
+  color: white;
+}
+
+.btn-default {
+  border: none;
+}
+
+.btn._fade_link {
+  background-color: #fff;
+  color: #4A6AEC;
+
+}
+
+.btn._fade_link:hover {
+  background-color: #4A6AEC;
+  color: #fff;
+}
+
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  position: relative;
+  left: 160%;
+}
+
+.social-link {
+  color: white;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.social-link:hover {
+  color: #636e6e;
+}
