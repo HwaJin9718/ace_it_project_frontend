@@ -38,4 +38,75 @@
   padding-top: 30px;
 }
 
+.org-history-title_comp_name{
+  text-align: center;
+  padding-top: 170px;
+  font-weight: bold;
+  font-size: 35px;
+  color: #ffffff;
+}
 
+
+.org-history-container{
+  position: relative;
+  width: 50%;
+  left: 25%;
+  height: auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.org-history-table-header {
+  background-color: #4e61ff; /* 원하는 파란색으로 변경 가능 */
+}
+/* OrganizationHistory.css */
+
+/*.table-row-gradient {*/
+/*  background: linear-gradient(900deg, rgba(255,255,255,0.1), rgba(255,255,255,1));*/
+/*  transition: background 0.5s ease-in-out;*/
+/*}*/
+
+/*.table-row-gradient:hover {*/
+/*  background: linear-gradient(900deg, rgba(255,255,255,0.3), rgba(255,255,255,1));*/
+/*}*/
+
+
+/* Timeline container */
+.org-history-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: 50px;
+  padding: 100px;
+}
+
+/* Each item in the timeline */
+.timeline-item {
+  display: flex;
+  position: relative;
+  padding: 20px 0;
+}
+
+/* Year on the left */
+.history-year {
+  position: relative;
+  left: -60px;
+  font-size: 20px;
+  color: #4e61ff; /* Blue color */
+  font-weight: bold;
+}
+
+
+/* Event details (Date and title) */
+.history-description {
+  padding-left: 20px;
+}
+
+.history-content {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  font-weight: normal;
+}

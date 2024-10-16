@@ -1,160 +1,123 @@
 import './Footer.css';
-import React from 'react';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import React, { useEffect, useState } from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css'; // FontAwesome 사용
+import { getInformation } from '../api/AdminAPI'; // Import getInformation API
 
 const Footer = () => {
+  const [informationData, setInformationData] = useState(null); // 상태 초기값을 null로 설정
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Helper function to find content by name
+  const getContentByName = (name) => {
+    const info = informationData?.find(item => item.information_name === name);
+    return info ? info.information_content : '미등록';
+  };
+
+  // Fetch the footer data from getInformation API
+  useEffect(() => {
+    getInformation()
+      .then(response => {
+        if (response.data.information && Array.isArray(response.data.information)) {
+          setInformationData(response.data.information); // information 배열을 설정
+        } else {
+          console.error('API 응답 형식이 예상과 다릅니다:', response.data);
+          setError('Footer 데이터를 처리하는 중 오류가 발생했습니다.');
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        setError('Footer 데이터를 가져오는 데 실패했습니다.');
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading footer...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!informationData) {
+    return <div>Footer 정보를 불러오지 못했습니다.</div>;
+  }
+
   return (
-    <footer className="footer page-footer font-small unique-color-dark">
+    <footer className="footer page-footer" style={{ backgroundColor: '#4A6AEC' }}>
+      <div className="footer-container-1" style={{ backgroundColor: '#8b99a3' }}>
+        <div className="button_wrap">
+          {/* 대표번호 버튼 */}
+          <div className="inline-blocked">
+            <a className="btn btn-default" href="tel:1544-0714" style={{ borderRadius: '30px' }}>
+              <span style={{ marginRight: '10px' }}>
+                <i aria-hidden="true" className="fa fa-phone"></i>
+              </span>
+              대표번호 : 1544-0714
+            </a>
+          </div>
+
+          {/* 온라인 문의 버튼 */}
+          <div className="inline-blocked">
+            <a
+              className="btn btn-default"
+              target="_blank"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeZz8_Z66eyGC-yk3a81DLSPSDbDIn5VJ9qPW8pPJXl0FXLVQ/viewform?usp=sf_link/"
+              style={{ borderRadius: '30px' }}
+            >
+              <span style={{ marginRight: '10px' }}>
+                <i aria-hidden="true" className="fa fa-file-text"></i>
+              </span>
+              Google 설문지 문의
+            </a>
+          </div>
+
+          {/* 소셜 미디어 아이콘 */}
+          <div className="social-icons">
+            {/* Instagram */}
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-instagram"></i>
+            </a>
+            {/* Naver Blog */}
+            <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-facebook"></i>
+            </a>
+            {/* YouTube */}
+            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-youtube"></i>
+            </a>
+            {/* X(Twitter) */}
+            <a href="https://www.x.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div className="footer-top">
-        <div className="container">
-          {/* Grid row */}
-          <div className="row py-4 d-flex align-items-center">
-            {/* Grid column */}
-            <div className="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-              <h6 className="mb-0">
-                <a href="tel:07040991200" style={{color: '#fff'}}>
-                  <i className="fa fa-phone mr-3"></i>견적 요청하기
-                </a>
-              </h6>
-            </div>
-            {/* Grid column */}
-
-            {/* Grid column */}
-            <div className="col-md-6 col-lg-7 text-center text-md-right">
-              {/* Facebook */}
-              <a className="fb-ic" href="#">
-                <i className="fab fa-facebook-f white-text mr-4"></i>
-              </a>
-              {/* Twitter */}
-              <a className="tw-ic" href="#">
-                <i className="fab fa-twitter white-text mr-4"></i>
-              </a>
-              {/* Google Plus */}
-              <a className="gplus-ic" href="#">
-                <i className="fab fa-google-plus-g white-text mr-4"></i>
-              </a>
-              {/* Linkedin */}
-              <a className="li-ic" href="#">
-                <i className="fab fa-linkedin-in white-text mr-4"></i>
-              </a>
-              {/* Instagram */}
-              <a className="ins-ic" href="#">
-                <i className="fab fa-instagram white-text"></i>
-              </a>
-            </div>
-            {/* Grid column */}
+        <div className="footer-container-1">
+          <div className="row py-4 d-flex align-items-center justify-content-between">
+            {/* Dynamically populate company information */}
+            <h5 className="company-name" style={{ color: '#fff' }}>
+              {getContentByName("회사명")}
+            </h5>
+            <p style={{ color: '#fff' }}>
+              사업자번호: {getContentByName("사업자번호") || '미등록'} | 대표이사: {getContentByName("대표이사")}<br />
+              주소: {getContentByName("주소")}<br />
+              대표전화: {getContentByName("기본 연락처")} | FAX: {getContentByName("FAX 번호")}<br />
+              이메일: {getContentByName("이메일") || '미등록'} | 홈페이지: <a href={`http://${getContentByName("홈페이지")}`} style={{ color: '#fff' }}>{getContentByName("홈페이지")}</a><br />
+              운영 시간: {getContentByName("운영 시간")}
+            </p>
           </div>
-          {/* Grid row */}
         </div>
       </div>
 
-      {/* Footer Links */}
-      <div className="container text-center text-md-left mt-5">
-        {/* Grid row */}
-        <div className="row mt-3">
-          {/* Grid column */}
-          <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            {/* Content */}
-            <h5 className="text-uppercase font-weight-bold">(주)케이아이에스 시스템즈</h5>
-            <hr
-              className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-              style={{width: '60px'}}
-            />
-            <p>
-              FMS 시설물 모니터링, 전산실 구축, <br/>
-              UPS 전원설비, BMS 배터리, <br/>
-              공조설비 항온항습기 전문업체
-            </p>
-          </div>
-          {/* Grid column */}
-
-          {/* Grid column */}
-          <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            {/* Links */}
-            <h6 className="text-uppercase font-weight-bold">사업영역</h6>
-            <hr
-              className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-              style={{width: '60px'}}
-            />
-            <p>
-              <a href="business.php?area=area7">FMS 시설관리시스템</a>
-              <br/>
-              <a href="business.php?area=area1">전산실 &amp; 종합상황실</a>
-              <br/>
-              <a href="business.php?area=area2">기계시스템</a>
-              <br/>
-              <a href="business.php?area=area4">전원시스템</a>
-              <br/>
-              <a href="business.php?area=area6">보안시스템</a>
-              <br/>
-              <a href="business.php?area=area8">관제시스템</a>
-              <br/>
-              <a href="business.php?area=area5">통합배선</a>
-              <br/>
-              <a href="business.php?area=area3">소화시스템</a>
-              <br/>
-              <a href="business.php?area=area9">시뮬레이터 훈련장</a>
-            </p>
-          </div>
-          {/* Grid column */}
-
-          {/* Grid column */}
-          <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            {/* Links */}
-            <h6 className="text-uppercase font-weight-bold">바로가기</h6>
-            <hr
-              className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-              style={{width: '60px'}}
-            />
-            <p>
-              <a href="introduction.php">회사소개</a>
-            </p>
-            <p>
-              <a href="product1.php">제품소개</a>
-            </p>
-            <p>
-              <a href="solution1.php">하드웨어</a>
-            </p>
-            <p>
-              <a href="contact.php">문의하기</a>
-            </p>
-          </div>
-          {/* Grid column */}
-
-          {/* Grid column */}
-          <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            {/* Links */}
-            <h6 className="text-uppercase font-weight-bold">Contact</h6>
-            <hr
-              className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-              style={{width: '60px'}}
-            />
-            <p>
-              <i className="fa fa-home mr-3"></i> 경기도 안양시 동안구 시민대로 361
-              <br/>
-              번지 513호 (관양동, 에이스평촌타워)
-            </p>
-            <p>
-              <i className="fa fa-envelope mr-3"></i> kis2018@kissystemz.com
-            </p>
-            <p>
-              <i className="fa fa-phone mr-3"></i> 031-689-3661
-            </p>
-            <p>
-              <i className="fa fa-fax mr-3"></i> 031-689-3662
-            </p>
-          </div>
-          {/* Grid column */}
-        </div>
-        {/* Grid row */}
+      <div className="footer-container-1">
+        <p style={{ color: '#fff', fontSize: '13px' }}>
+          Copyright © {new Date().getFullYear()} {getContentByName("회사명")} ALL RIGHTS RESERVED
+        </p>
       </div>
-      {/* Footer Links */}
-
-      {/* Copyright */}
-      <div className="footer-copyright text-center py-3">
-        <strong>(주)케이아이에스시스템즈</strong>. © All Rights Reserved
-      </div>
-      {/* Copyright */}
     </footer>
   );
 };

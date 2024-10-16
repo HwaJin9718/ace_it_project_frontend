@@ -1,5 +1,4 @@
-// src/pages/Home.jsx
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import Header from "../components/Header";
 import Introduction from "../pages/Introduction";
 import Footer from "../components/Footer";
@@ -27,32 +26,39 @@ const Home = () => {
   }, []);
 
   return (
-    <ReactFullpage
-      anchors={anchors}
-      navigation
-      scrollingSpeed={2000}
-      touchSensitivity={55}
-      scrollOverflow={true}
-      fitToSection={true} // fitToSection 옵션 추가
-      render={({ fullpageApi }) => (
-        <ReactFullpage.Wrapper>
-          <div className="section">
-            <Header />
-            {/* 스크롤 다운 화살표 */}
-            <div
-              className="scroll-down-arrow"
-              onClick={() => fullpageApi.moveSectionDown()}
-            >
-              <i className="fas fa-chevron-down"></i>
-            </div>
-          </div>
-          <div className="section">
-            <Introduction />
-            <Footer />
-          </div>
-        </ReactFullpage.Wrapper>
-      )}
-    />
+    <>
+        {/* ReactFullpage Wrapper 내부는 섹션 관리 */}
+        <ReactFullpage
+          anchors={anchors}
+          navigation
+          scrollingSpeed={2000}
+          touchSensitivity={55}
+          scrollOverflow={true}
+          fitToSection={true}
+          render={({fullpageApi}) => (
+            <ReactFullpage.Wrapper>
+              <div className="section">
+                <Header/>
+                {/* 스크롤 다운 화살표 */}
+                <div
+                  className="scroll-down-arrow"
+                  onClick={() => fullpageApi.moveSectionDown()}
+                >
+                  <i className="fas fa-chevron-down"></i>
+                </div>
+              </div>
+              <div className="section">
+                <div>
+                  <Introduction/>
+                </div>
+                  <div>
+                    <Footer/>
+                  </div>
+                </div>
+            </ReactFullpage.Wrapper>
+          )}
+        />
+    </>
   );
 };
 
