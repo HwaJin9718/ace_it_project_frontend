@@ -34,7 +34,9 @@ export const getBusinessClientById = (id) => clientAPI.get(`/${id}`);
 export const createBusinessClient = (data) => clientAPI.post('', data, {
     headers: { 'Content-Type': 'multipart/form-data' },
 });
-export const updateBusinessClient = (id, data) => clientAPI.patch(`/${id}`, data);
+export const updateBusinessClient = (id, data) => clientAPI.patch(`/${id}`, data, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+});
 export const deleteBusinessClient = (id) => clientAPI.delete(`/${id}`);
 
 
