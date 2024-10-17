@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createCompanyVisionValue } from '../../../api/AdminAPI';
 import { useNavigate } from 'react-router-dom';
+import './CompanyVisionValues.css'; // CSS 파일 추가
 
 const AddCompanyVisionValue = () => {
     const [name, setName] = useState('');
@@ -50,50 +51,55 @@ const AddCompanyVisionValue = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>비전 추가</h2>
-            <input
-                type="text"
-                placeholder="비전 이름"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-            />
-            <textarea
-                placeholder="비전 내용 (선택 사항)"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-            />
+        <div className="vision-values-container">
+            <h2>Add Company Vision Value</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="비전 이름"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
+                <textarea
+                    placeholder="비전 설명"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                />
 
-            <h3>비전 세부 사항 (key-value 쌍, 선택 사항)</h3>
-            {details.map((detail, index) => (
-                <div key={index}>
-                    <input
-                        type="text"
-                        placeholder="Key"
-                        value={detail.key}
-                        onChange={(e) => handleDetailChange(index, 'key', e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Value"
-                        value={detail.value}
-                        onChange={(e) => handleDetailChange(index, 'value', e.target.value)}
-                    />
-                    {details.length > 1 && (
-                        <button type="button" onClick={() => handleRemoveDetail(index)}>
-                            삭제
-                        </button>
-                    )}
+                <h5>비전 세부 사항</h5>
+                {details.map((detail, index) => (
+                    <div key={index} className="details-row">
+                        <input
+                            type="text"
+                            placeholder="Key"
+                            value={detail.key}
+                            onChange={(e) => handleDetailChange(index, 'key', e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Value"
+                            value={detail.value}
+                            onChange={(e) => handleDetailChange(index, 'value', e.target.value)}
+                        />
+                        {details.length > 1 && (
+                            <button type="button" onClick={() => handleRemoveDetail(index)}>
+                                삭제
+                            </button>
+                        )}
+                    </div>
+                ))}
+
+                <button type="button" onClick={handleAddDetail}>
+                    세부 사항 추가
+                </button>
+
+                <div className="form-button-container">
+                    <button type="submit">등록</button>
+                    <button type="button" onClick={() => navigate('/companyVisionValuesList')}>목록으로 돌아가기</button>
                 </div>
-            ))}
-
-            <button type="button" onClick={handleAddDetail}>
-                key-value 입력창 추가
-            </button>
-
-            <button type="submit">제출</button>
-        </form>
+            </form>
+        </div>
     );
 };
 

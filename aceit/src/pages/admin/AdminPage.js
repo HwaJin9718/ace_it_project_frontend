@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './AdminPage.css';
 
 const AdminPage = () => {
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ const AdminPage = () => {
     };
 
     return (
-        <div>
+        <div className="admin-page-container">
             <h3>관리자 페이지</h3>
             <button onClick={handleNavigateToInformationList}>
                 information 목록 보기

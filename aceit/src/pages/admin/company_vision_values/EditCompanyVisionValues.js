@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCompanyVisionValueById, updateCompanyVisionValue } from '../../../api/AdminAPI';
 import { useParams, useNavigate } from 'react-router-dom';
+import './CompanyVisionValues.css'; // CSS 파일 추가
 
 const EditCompanyVisionValue = () => {
     const { id } = useParams();
@@ -21,7 +22,7 @@ const EditCompanyVisionValue = () => {
                 // 기존 vv_details JSON 데이터를 key-value 쌍 배열로 변환
                 const detailsArray = visionValue.vv_details
                     ? Object.entries(visionValue.vv_details).map(([key, value]) => ({ key, value }))
-                    : [{ key: '', value: '' }]; // details가 없으면 빈 배열로 초기화
+                    : [{ key: '', value: '' }];
                 setDetails(detailsArray);
 
                 setLoading(false);
@@ -65,8 +66,8 @@ const EditCompanyVisionValue = () => {
 
         updateCompanyVisionValue(id, {
             vv_name: name,
-            vv_content: content || null, // content가 빈 문자열일 경우 null로 처리
-            vv_details: Object.keys(formattedDetails).length > 0 ? formattedDetails : null // 빈 key-value는 null로 처리
+            vv_content: content || null,
+            vv_details: Object.keys(formattedDetails).length > 0 ? formattedDetails : null
         })
             .then(() => {
                 alert('비전 값이 성공적으로 수정되었습니다.');
@@ -80,50 +81,55 @@ const EditCompanyVisionValue = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>비전 수정</h2>
-            <input
-                type="text"
-                placeholder="비전 이름"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-            />
-            <textarea
-                placeholder="비전 내용 (선택 사항)"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-            />
+        <div className="vision-values-container">
+            <h2>Edit Company Vision Value</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="비전 이름"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
+                <textarea
+                    placeholder="비전 설명"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                />
 
-            <h3>비전 세부 사항 (key-value 쌍, 선택 사항)</h3>
-            {details.map((detail, index) => (
-                <div key={index}>
-                    <input
-                        type="text"
-                        placeholder="Key"
-                        value={detail.key}
-                        onChange={(e) => handleDetailChange(index, 'key', e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Value"
-                        value={detail.value}
-                        onChange={(e) => handleDetailChange(index, 'value', e.target.value)}
-                    />
-                    {details.length > 1 && (
-                        <button type="button" onClick={() => handleRemoveDetail(index)}>
-                            삭제
-                        </button>
-                    )}
+                <h5>비전 세부 사항</h5>
+                {details.map((detail, index) => (
+                    <div key={index} className="details-row">
+                        <input
+                            type="text"
+                            placeholder="Key"
+                            value={detail.key}
+                            onChange={(e) => handleDetailChange(index, 'key', e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Value"
+                            value={detail.value}
+                            onChange={(e) => handleDetailChange(index, 'value', e.target.value)}
+                        />
+                        {details.length > 1 && (
+                            <button type="button" onClick={() => handleRemoveDetail(index)}>
+                                삭제
+                            </button>
+                        )}
+                    </div>
+                ))}
+
+                <button type="button" onClick={handleAddDetail}>
+                    세부 사항 추가
+                </button>
+
+                <div className="form-button-container">
+                    <button type="submit">수정</button>
+                    <button type="button" onClick={() => navigate('/companyVisionValuesList')}>목록으로 돌아가기</button>
                 </div>
-            ))}
-
-            <button type="button" onClick={handleAddDetail}>
-                key-value 입력창 추가
-            </button>
-
-            <button type="submit">수정</button>
-        </form>
+            </form>
+        </div>
     );
 };
 

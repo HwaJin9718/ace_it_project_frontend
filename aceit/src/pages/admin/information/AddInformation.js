@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createInformation } from '../../../api/AdminAPI';
 import { useNavigate } from 'react-router-dom';
+import './Information.css'; // 공통 스타일 파일 추가
 
 const AddInformation = () => {
     const [name, setName] = useState('');
@@ -18,23 +19,30 @@ const AddInformation = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>정보 추가</h2>
-            <input
-                type="text"
-                placeholder="정보 이름"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-            />
-            <textarea
-                placeholder="정보 내용"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                required
-            />
-            <button type="submit">추가</button>
-        </form>
+        <div className="information-container">
+            <h2>Add Information</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="정보 이름"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
+                <textarea
+                    placeholder="정보 내용"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    required
+                />
+                <div className="form-button-container">
+                    <button type="submit">추가</button>
+                    <button type="button" onClick={() => navigate('/informationList')}>
+                        목록으로 돌아가기
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 };
 

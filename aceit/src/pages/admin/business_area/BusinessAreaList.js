@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getBusinessAreas, deleteBusinessArea } from '../../../api/AdminAPI';
 import { useNavigate } from 'react-router-dom';
+import './BusinessArea.css'; // CSS 파일 추가
 
 const BusinessAreaList = () => {
     const [businessAreas, setBusinessAreas] = useState([]);
@@ -21,11 +22,13 @@ const BusinessAreaList = () => {
     };
 
     return (
-        <div>
-            <h3>사업 영역 목록</h3>
-            <button onClick={() => navigate('/addBusinessArea')}>사업 영역 추가</button>
-            <button onClick={() => navigate('/admin')}>관리자 페이지로 돌아가기</button>
-            <ul>
+        <div className="business-area-container">
+            <h2>Business Area List</h2>
+            <div className="button-container">
+                <button onClick={() => navigate('/addBusinessArea')}>사업 영역 추가</button>
+                <button onClick={() => navigate('/admin')}>관리자 페이지로 돌아가기</button>
+            </div>
+            <ul className="business-area-list">
                 {businessAreas.map((area) => (
                     <li key={area.area_id}>
                         <h5>{area.area_name}</h5>

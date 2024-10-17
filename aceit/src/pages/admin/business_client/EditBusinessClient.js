@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { getBusinessClientById, updateBusinessClient } from '../../../api/AdminAPI';
+import React, { useState, useEffect, useRef } from 'react';
+import { getBusinessClientById, updateBusinessClient, API_SERVER_HOST } from '../../../api/AdminAPI';
 import { useParams, useNavigate } from 'react-router-dom';
-import { API_SERVER_HOST } from '../../../api/AdminAPI'; // API 서버 호스트 import
+import './BusinessClient.css'; // CSS 파일 추가
 
 const EditBusinessClient = () => {
     const { id } = useParams();
@@ -9,8 +9,10 @@ const EditBusinessClient = () => {
     const [name, setName] = useState('');
     const [logo, setLogo] = useState(null);
     const [currentLogoPath, setCurrentLogoPath] = useState('');
-    const [deleteLogo, setDeleteLogo] = useState(false);  // 로고 삭제 여부를 위한 상태
+    const [logoPreview, setLogoPreview] = useState(null); // 이미지 미리보기 상태 추가
+    const [deleteLogo, setDeleteLogo] = useState(false);
     const [loading, setLoading] = useState(true);
+    const fileInputRef = useRef(null); // 파일 input에 대한 ref 추가
 
     useEffect(() => {
         getBusinessClientById(id)
@@ -26,13 +28,25 @@ const EditBusinessClient = () => {
             });
     }, [id]);
 
+    const handleLogoChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setLogo(file);
+            setLogoPreview(URL.createObjectURL(file));  // 선택한 파일 미리보기 URL 생성
+        }
+    };
+
+    const handleLogoRemove = () => {
+        setLogo(null);
+        setLogoPreview(null);  // 미리보기 이미지 제거
+        fileInputRef.current.value = '';  // 파일 input 값 초기화 (선택했던 파일명도 사라짐)
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const formData = new FormData();
         formData.append('client_name', name);
-
-        // 이미지를 삭제하려는 경우 delete_logo 추가
         formData.append('delete_logo', deleteLogo);
 
         if (logo) {
@@ -52,8 +66,8 @@ const EditBusinessClient = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>사업 클라이언트 수정</h2>
+        <form onSubmit={handleSubmit} className="business-client-container">
+            <h2>Edit Business Client</h2>
             <input
                 type="text"
                 placeholder="클라이언트 이름"
@@ -62,13 +76,11 @@ const EditBusinessClient = () => {
                 required
             />
 
-            {/* 기존 로고가 있는 경우 표시 */}
+            {/* 현재 로고 보여주기 */}
             {currentLogoPath && (
-                <>
+                <div>
                     <p>현재 로고:</p>
                     <img src={`${API_SERVER_HOST}/${currentLogoPath}`} alt="Client Logo" width={200} />
-
-                    {/* 로고 삭제 여부 체크박스 */}
                     <div>
                         <label>
                             <input
@@ -79,17 +91,30 @@ const EditBusinessClient = () => {
                             기존 로고 삭제
                         </label>
                     </div>
-                </>
+                </div>
             )}
 
-            {/* 새로운 로고 업로드 옵션 */}
+            {/* 새로운 이미지 선택 */}
             <input
                 type="file"
-                onChange={(e) => setLogo(e.target.files[0])}
+                onChange={handleLogoChange}
                 accept="image/*"
+                ref={fileInputRef}  // ref를 파일 input에 추가
             />
 
-            <button type="submit">수정</button>
+            {/* 선택한 이미지 미리보기 */}
+            {logoPreview && (
+                <div>
+                    <p>선택된 로고:</p>
+                    <img src={logoPreview} alt="Logo Preview" width={200} />
+                    <button type="button" onClick={handleLogoRemove}>이미지 삭제</button>
+                </div>
+            )}
+
+            <div className="form-button-container">
+                <button type="submit">수정</button>
+                <button type="button" onClick={() => navigate('/businessClientList')}>목록으로 돌아가기</button>
+            </div>
         </form>
     );
 };

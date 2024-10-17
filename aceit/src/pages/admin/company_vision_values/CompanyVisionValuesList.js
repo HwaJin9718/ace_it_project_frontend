@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getCompanyVisionValues, deleteCompanyVisionValue } from '../../../api/AdminAPI';
 import { useNavigate } from 'react-router-dom';
+import './CompanyVisionValues.css'; // CSS 파일 추가
 
 const CompanyVisionValuesList = () => {
     const [companyVisionValues, setCompanyVisionValues] = useState([]);
@@ -21,21 +22,39 @@ const CompanyVisionValuesList = () => {
     };
 
     return (
-        <div>
-            <h3>회사 비전 목록</h3>
-            <button onClick={() => navigate('/addCompanyVisionValue')}>비전 추가</button>
-            <button onClick={() => navigate('/admin')}>관리자 페이지로 돌아가기</button>
-            <ul>
+        <div className="vision-values-container">
+            <h2>Company Vision Value List</h2>
+            <div className="button-container">
+                <button onClick={() => navigate('/addCompanyVisionValue')}>추가 등록</button>
+                <button onClick={() => navigate('/admin')}>관리자 페이지로 돌아가기</button>
+            </div>
+            <table className="vision-values-table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Content</th>
+                    <th>Details</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
                 {companyVisionValues.map((visionValue) => (
-                    <li key={visionValue.vv_id}>
-                        <h5>{visionValue.vv_name}</h5>
-                        <p>{visionValue.vv_content}</p>
-                        <pre>{JSON.stringify(visionValue.vv_details, null, 2)}</pre>
-                        <button onClick={() => navigate(`/editCompanyVisionValue/${visionValue.vv_id}`)}>수정</button>
-                        <button onClick={() => handleDelete(visionValue.vv_id)}>삭제</button>
-                    </li>
+                    <tr key={visionValue.vv_id}>
+                        <td>{visionValue.vv_id}</td>
+                        <td>{visionValue.vv_name}</td>
+                        <td>{visionValue.vv_content}</td>
+                        <td>
+                            <pre>{JSON.stringify(visionValue.vv_details, null, 2)}</pre> {/* JSON을 보기 쉽게 출력 */}
+                        </td>
+                        <td>
+                            <button onClick={() => navigate(`/editCompanyVisionValue/${visionValue.vv_id}`)}>수정</button>
+                            <button onClick={() => handleDelete(visionValue.vv_id)}>삭제</button>
+                        </td>
+                    </tr>
                 ))}
-            </ul>
+                </tbody>
+            </table>
         </div>
     );
 };

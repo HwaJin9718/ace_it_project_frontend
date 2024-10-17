@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createBusinessArea } from '../../../api/AdminAPI';
 import { useNavigate } from 'react-router-dom';
+import './BusinessArea.css'; // CSS 파일 추가
 
 const AddBusinessArea = () => {
     const [name, setName] = useState('');
@@ -58,8 +59,8 @@ const AddBusinessArea = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>사업 영역 추가</h2>
+        <form onSubmit={handleSubmit} className="business-area-container">
+            <h2>Add Business Area</h2>
             <input
                 type="text"
                 placeholder="사업 영역 이름"
@@ -73,9 +74,9 @@ const AddBusinessArea = () => {
                 onChange={(e) => setContent(e.target.value)}
             />
 
-            <h3>사업 유형 (key-value 쌍)</h3>
+            <h3>사업 유형</h3>
             {areaType.map((item, index) => (
-                <div key={index}>
+                <div key={index} className="details-row">
                     <input
                         type="text"
                         placeholder="Key"
@@ -95,9 +96,9 @@ const AddBusinessArea = () => {
             ))}
             <button type="button" onClick={() => handleAddDetail(setAreaType)}>사업 유형 추가</button>
 
-            <h3>사업 세부 사항 (key-value 쌍)</h3>
+            <h3>사업 세부 사항</h3>
             {details.map((item, index) => (
-                <div key={index}>
+                <div key={index} className="details-row">
                     <input
                         type="text"
                         placeholder="Key"
@@ -117,7 +118,10 @@ const AddBusinessArea = () => {
             ))}
             <button type="button" onClick={() => handleAddDetail(setDetails)}>세부 사항 추가</button>
 
-            <button type="submit">추가</button>
+            <div className="form-button-container">
+                <button type="submit">등록</button>
+                <button type="button" onClick={() => navigate('/businessAreaList')}>목록으로 돌아가기</button>
+            </div>
         </form>
     );
 };

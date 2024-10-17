@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { createHistory } from '../../../api/AdminAPI';
 import { useNavigate, useLocation } from 'react-router-dom';
+import './History.css'; // 공통 스타일 파일 추가
 
 const AddHistory = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [sectionCode, setSectionCode] = useState('');
+    const [sectionText, setSectionText] = useState('');
     const [date, setDate] = useState('');
     const [content, setContent] = useState('');
 
-    // 쿼리 파라미터에서 sectionCode 가져오기
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const sectionCodeParam = queryParams.get('sectionCode');
         if (sectionCodeParam) {
             setSectionCode(sectionCodeParam);
+            setSectionText(sectionCodeParam === '1' ? '회사 연혁' : '개발 본부 이력');
         }
     }, [location]);
 
@@ -29,28 +31,32 @@ const AddHistory = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>히스토리 추가</h2>
-            <input
-                type="number"
-                placeholder="Section Code"
-                value={sectionCode}
-                readOnly // 쿼리 파라미터로 받은 값은 수정 불가하게 설정
-            />
-            <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                required
-            />
-            <textarea
-                placeholder="Content"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                required
-            />
-            <button type="submit">추가</button>
-        </form>
+        <div className="history-container">
+            <h2>Add History</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={sectionText}
+                    readOnly
+                />
+                <input
+                    type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    required
+                />
+                <textarea
+                    placeholder="Content"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    required
+                />
+                <div className="form-button-container">
+                    <button type="submit">추가</button>
+                    <button type="button" onClick={() => navigate('/historyList')}>목록으로 돌아가기</button>
+                </div>
+            </form>
+        </div>
     );
 };
 
