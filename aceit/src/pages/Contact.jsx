@@ -3,6 +3,7 @@ import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
 import NavbarComp from '../components/layouts/Navigation/NavbarComp';
 import {motion} from 'framer-motion'; // framer-motion 임포트
 import './Contact.css'; // CSS 파일 임포트
+import { sendInquiry }from '../api/AdminAPI'
 
 const containerStyle = {
   width: '100%',
@@ -41,6 +42,47 @@ const pageAnimate_1 = {
 };
 
 export default class Contact extends Component {
+
+  state = {
+    name: '',
+    call_num: '',
+    email: '',
+    message: '',
+  };
+
+  // 폼 제출 이벤트 핸들러
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const inquiryData = {
+      message: {
+        inquiry_writer: this.state.name,
+        inquiry_writer_email: this.state.email,
+        inquiry_writer_contact_number: this.state.call_num,
+        inquiry_details: this.state.message,
+      },
+    };
+
+    try {
+      await sendInquiry(inquiryData);
+      alert('문의가 성공적으로 전송되었습니다.');
+      // 입력 필드 초기화
+      this.setState({
+        name: '',
+        call_num: '',
+        email: '',
+        message: '',
+      });
+    } catch (error) {
+      alert('문의 전송 중 오류가 발생했습니다.');
+      console.error(error);
+    }
+  };
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   render() {
     return (
       <div>
@@ -106,32 +148,49 @@ export default class Contact extends Component {
             animate="visible"
             variants={containerVariants}>
             <h3>문의하기</h3>
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <label htmlFor="name">이름</label>
               <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="이름을 입력하세요"
-                required
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="이름을 입력하세요"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  required
+              />
+
+              <label htmlFor="call_num">연락처</label>
+              <input
+                  type="text"
+                  id="call_num"
+                  name="call_num"
+                  placeholder="연락처를 입력하세요"
+                  value={this.state.call_num}
+                  onChange={this.handleChange}
+                  required
               />
 
               <label htmlFor="email">이메일</label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="이메일을 입력하세요"
-                required
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="이메일을 입력하세요"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  required
               />
 
               <label htmlFor="message">메시지</label>
               <textarea
-                id="message"
-                name="message"
-                rows="5"
-                placeholder="메시지를 입력하세요"
-                required
+                  id="message"
+                  name="message"
+                  rows="5"
+                  placeholder="메시지를 입력하세요"
+                  value={this.state.message}
+                  onChange={this.handleChange}
+                  required
               />
 
               <button type="submit">보내기</button>
