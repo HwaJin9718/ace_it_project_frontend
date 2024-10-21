@@ -25,23 +25,6 @@ const pageAnimate_1 = {
 export default class About extends Component {
   render() {
     return (
-      <div>
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-        >
-          <div>
-            <motion.div variants={pageAnimate_1}>
-              <img
-                src="/AdobeStock_banner_2-1.png"
-                alt="배너 이미지"
-                className="banner-image-container"
-              />
-              <div className="banner-text-about">회사소개</div>
-            </motion.div>
-          </div>
-        </motion.div>
         <div className="container">
           <div className="row align-items-center">
             {/* 왼쪽 이미지 */}
@@ -111,7 +94,6 @@ export default class About extends Component {
 
             </motion.div>
           </div>
-        </div>
 
         <div className="container">
           <div className="row align-items-center">

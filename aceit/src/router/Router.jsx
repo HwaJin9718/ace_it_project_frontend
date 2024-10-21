@@ -1,6 +1,6 @@
 // Router.jsx
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation  } from 'react-router-dom';
 import Footer from '../components/Footer';
 import About from '../pages/About';
 import Home from '../pages/Home';
@@ -29,10 +29,14 @@ import SystemDevelop from "../pages/business/SystemDevelop";
 import FMSMonitoring from "../pages/business/FMSMonitoring";
 import InfrastructureSystem from "../pages/business/InfrastructureSystem";
 import Maintenance from "../pages/business/Maintenance";
+import HeadBanner from "../components/HeadBanner";
 
 const Router = () => {
+    const location = useLocation(); // Get the current location
     return (
         <>
+            {/* Conditionally render HeadBanner if not on home route */}
+            {location.pathname !== '/' && <HeadBanner />}
             <NavbarComp />
             <div className="App">
                 <Routes>
@@ -41,10 +45,10 @@ const Router = () => {
                     <Route path="/about" element={<About />} />
                     <Route path="/about/OrganizationHistory" element={<OrganizationHistory />} />
                     <Route path="/business" element={<Business />} />
-                    <Route path="/business/service1" element={<SystemDevelop />} />
-                    <Route path="/business/service2" element={<FMSMonitoring />} />
-                    <Route path="/business/service3" element={<InfrastructureSystem />} />
-                    <Route path="/business/service4" element={<Maintenance />} />
+                    <Route path="/business/SystemDevelop" element={<SystemDevelop />} />
+                    <Route path="/business/FMSMonitoring" element={<FMSMonitoring />} />
+                    <Route path="/business/InfrastructureSystem" element={<InfrastructureSystem />} />
+                    <Route path="/business/Maintenance" element={<Maintenance />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/introduction" element={<Introduction />} />
 

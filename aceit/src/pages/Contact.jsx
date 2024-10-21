@@ -3,7 +3,7 @@ import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
 import NavbarComp from '../components/layouts/Navigation/NavbarComp';
 import {motion} from 'framer-motion'; // framer-motion 임포트
 import './Contact.css'; // CSS 파일 임포트
-import { sendInquiry }from '../api/AdminAPI'
+import {sendInquiry} from '../api/AdminAPI'
 
 const containerStyle = {
   width: '100%',
@@ -80,7 +80,7 @@ export default class Contact extends Component {
   };
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   };
 
   render() {
@@ -92,28 +92,20 @@ export default class Contact extends Component {
           animate="visible"
           variants={containerVariants}
         >
-          <motion.div variants={pageAnimate_1}>
-            <img
-              src="/AdobeStock_banner_2-1.png"
-              alt="배너 이미지"
-              className="contact-banner-image-container"
-            />
-            <div className="banner-text-contact">문의 & 오시는 길</div>
-          </motion.div>
           <div className="google-map-container">
-          <motion.div initial="hidden"
-                      animate="visible"
-                      variants={containerVariants}>
-            <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-              <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={15}
-              >
-                <Marker position={center}/>
-              </GoogleMap>
-            </LoadScript>
-          </motion.div>
+            <motion.div initial="hidden"
+                        animate="visible"
+                        variants={containerVariants}>
+              <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+                <GoogleMap
+                  mapContainerStyle={containerStyle}
+                  center={center}
+                  zoom={15}
+                >
+                  <Marker position={center}/>
+                </GoogleMap>
+              </LoadScript>
+            </motion.div>
           </div>
           <motion.section
             className="contact-container"
@@ -151,46 +143,46 @@ export default class Contact extends Component {
             <form onSubmit={this.handleSubmit}>
               <label htmlFor="name">이름</label>
               <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="이름을 입력하세요"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                  required
+                type="text"
+                id="name"
+                name="name"
+                placeholder="이름을 입력하세요"
+                value={this.state.name}
+                onChange={this.handleChange}
+                required
               />
 
               <label htmlFor="call_num">연락처</label>
               <input
-                  type="text"
-                  id="call_num"
-                  name="call_num"
-                  placeholder="연락처를 입력하세요"
-                  value={this.state.call_num}
-                  onChange={this.handleChange}
-                  required
+                type="text"
+                id="call_num"
+                name="call_num"
+                placeholder="연락처를 입력하세요"
+                value={this.state.call_num}
+                onChange={this.handleChange}
+                required
               />
 
               <label htmlFor="email">이메일</label>
               <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="이메일을 입력하세요"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                  required
+                type="email"
+                id="email"
+                name="email"
+                placeholder="이메일을 입력하세요"
+                value={this.state.email}
+                onChange={this.handleChange}
+                required
               />
 
               <label htmlFor="message">메시지</label>
               <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  placeholder="메시지를 입력하세요"
-                  value={this.state.message}
-                  onChange={this.handleChange}
-                  required
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="메시지를 입력하세요"
+                value={this.state.message}
+                onChange={this.handleChange}
+                required
               />
 
               <button type="submit">보내기</button>

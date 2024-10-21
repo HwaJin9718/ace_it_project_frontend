@@ -157,25 +157,25 @@ export function Menu({ isOpen }) {
                     >
 
                         <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
-                            <Link to="/business/service1"
+                            <Link to="/business/SystemDevelop"
                                   style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
                                 시스템 개발
                             </Link>
                         </li>
                         <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
-                            <Link to="/business/service2"
+                            <Link to="/business/FMSMonitoring"
                                   style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
                                 FMS 모니터링
                             </Link>
                         </li>
                         <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
-                            <Link to="/business/service3"
+                            <Link to="/business/InfrastructureSystem"
                                   style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
                                 인프라 시스템
                             </Link>
                         </li>
                         <li className="dropdown-item" style={{opacity: 0, transform: 'scale(0.3)'}}>
-                            <Link to="/business/service4"
+                            <Link to="/business/Maintenance"
                                   style={{textDecoration: 'none', color: 'black', padding: '10px'}}>
                                 유지보수
                             </Link>

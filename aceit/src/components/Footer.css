@@ -1,6 +1,14 @@
 .footer {
-  background-color: #181e40;
-  color: #fff;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: #4A6AEC;
+  /* 기타 스타일 */
+  z-index: 1000;
+}
+
+.content {
+  padding-bottom: 200px; /* 푸터 높이만큼 설정 */
 }
 
 .footer-top {
